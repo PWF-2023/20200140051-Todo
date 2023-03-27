@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TodoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +31,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
+Route::get('/todo/create', [TodoController::class, 'create'])->name('todo.create');
+Route::get('/todo/edit', [TodoController::class, 'edit'])->name('todo.edit');
+
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
