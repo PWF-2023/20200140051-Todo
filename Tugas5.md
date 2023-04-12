@@ -1,10 +1,10 @@
 # Tugas 5
 
 ## 1. Todo Create
-![Alt text](screenshot/tugas5/todocreate.png)
+![Alt text](screenshot/tugas5/usercreate.png)
 ## 2. Todo Created
-![Alt text](screenshot/tugas5/todocreated.png)
+![Alt text](screenshot/tugas5/usercreated.png)
 ## 3. User Search
-![Alt text](screenshot/tugas5/usersearch.png)
+![Alt text](screenshot/tugas5/search.png)
 ## 4. User Search Result
-![Alt text](screenshot/tugas5/userresult.png)
+![Alt text](screenshot/tugas5/searchresult.png)
