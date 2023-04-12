@@ -33,7 +33,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
+Route::post('/todo', [TodoController::class, 'store'])->name('todo.store');
 Route::get('/todo/create', [TodoController::class, 'create'])->name('todo.create');
 Route::get('/todo/edit', [TodoController::class, 'edit'])->name('todo.edit');
 
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
+
