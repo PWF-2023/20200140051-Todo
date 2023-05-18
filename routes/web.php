@@ -32,19 +32,39 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
-Route::post('/todo', [TodoController::class, 'store'])->name('todo.store');
-Route::get('/todo/create', [TodoController::class, 'create'])->name('todo.create');
-Route::get('/todo/{todo}/edit', [TodoController::class, 'edit'])->name('todo.edit');
-Route::Patch('/todo/{todo}', [TodoController::class, 'update'])->name('todo.update');
+Route::resource('todo', TodoController::class)->except(['show']);
+
+// Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
+// Route::post('/todo', [TodoController::class, 'store'])->name('todo.store');
+// Route::get('/todo/create', [TodoController::class, 'create'])->name('todo.create');
+// Route::get('/todo/{todo}/edit', [TodoController::class, 'edit'])->name('todo.edit');
+// Route::Patch('/todo/{todo}', [TodoController::class, 'update'])->name('todo.update');
+// Route::delete('/todo/{todo}', [TodoController::class, 'destroy'])->name('todo.destroy');
+
 Route::patch('/todo/{todo}/complete', [TodoController::class, 'complete'])->name('todo.complete');
 Route::patch('/todo/{todo}/incomplete', [TodoController::class, 'uncomplete'])->name('todo.uncomplete');
-Route::delete('/todo/{todo}', [TodoController::class, 'destroy'])->name('todo.destroy');
 Route::delete('/todo', [TodoController::class, 'destroyCompleted'])->name('todo.deleteallcompleted');
 
 
-Route::get('/user', [UserController::class, 'index'])->name('user.index');
-Route::delete('/user/{user}/', [UserController::class, 'destroy'])->name('user.destroy');
-Route::patch('/user/{user}/makeadmin', [UserController::class, 'makeadmin'])->name('user.makeadmin');
-Route::patch('/user/{user}/removeadmin', [UserController::class, 'removeadmin'])->name('user.removeadmin');
+// Materi 6
+// Route::get('/user', [UserController::class, 'index'])->name('user.index');
+// Route::delete('/user/{user}/', [UserController::class, 'destroy'])->name('user.destroy');
+// Route::patch('/user/{user}/makeadmin', [UserController::class, 'makeadmin'])->name('user.makeadmin');
+// Route::patch('/user/{user}/removeadmin', [UserController::class, 'removeadmin'])->name('user.removeadmin');
+
+// Get all user route and change with prefix user
+
+
+// Route::prefix('user')->group(function () {
+    // Route::get('/', [UserController::class, 'index'])->name('user.index');
+    // Route::delete('/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    // Route::patch('/{user}/makeadmin', [UserController::class, 'makeadmin'])->name('user.makeadmin');
+    // Route::patch('/{user}/removeadmin', [UserController::class, 'removeadmin'])->name('user.removeadmin');
+
+    Route::middleware('admin')->group(function () {
+        Route::get('/user', [UserController::class, 'index'])->name('user.index');
+        Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+        Route::patch('/user/{user}/makeadmin', [UserController::class, 'makeadmin'])->name('user.makeadmin');
+        Route::patch('/user/{user}/removeadmin', [UserController::class, 'removeadmin'])->name('user.removeadmin');
+});
 
